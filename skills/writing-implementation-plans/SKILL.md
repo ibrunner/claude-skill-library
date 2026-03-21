@@ -1,13 +1,13 @@
 ---
 name: writing-implementation-plans
-description: Use immediately after a writing-plans skill saves its plan file — when the plan spans multiple sessions and needs phase organization with exit criteria and multi-session progress tracking.
+description: Use immediately after superpowers:writing-plans saves its plan file — when the plan spans multiple sessions and needs phase organization with exit criteria and multi-session progress tracking
 ---
 
 # Writing Implementation Plans
 
 ## Overview
 
-Refine the micro-task plan produced by a writing-plans skill into a phased, checkpointed plan that an agent can execute across multiple sessions. This skill **reads the existing plan file and replaces it in-place** — do not create a new file.
+Refine the micro-task plan produced by `superpowers:writing-plans` into a phased, checkpointed plan that an agent can execute across multiple sessions. This skill **reads the existing plan file and replaces it in-place** — do not create a new file.
 
 **Announce at start:** "I'm using writing-implementation-plans to refine the plan into a phased format."
 
@@ -15,7 +15,7 @@ Refine the micro-task plan produced by a writing-plans skill into a phased, chec
 
 ## When to Use
 
-- Immediately after a writing-plans skill saves its plan file
+- Immediately after `superpowers:writing-plans` saves its plan file
 - The plan file path was just announced in the previous step — use that exact path
 - Do NOT run this before writing-plans; it needs the micro-task content to reorganize
 
@@ -85,7 +85,7 @@ Replace the plan file with the phased structure below. **Preserve all existing t
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For Claude:** REQUIRED SUB-SKILL: Use an executing-plans skill to implement this plan task-by-task.
+> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 > Read the **Notes** section at the bottom before starting and after completing each phase — it records decisions and deviations that affect later steps.
 > Mark each checkbox `[x]` only after completing the task AND its validation steps.
 

@@ -85,6 +85,14 @@ Initiative (strategic direction, spans multiple projects)
 
 All task documents use YAML frontmatter with `type`, `status`, `priority`, and optional `project`/`initiative` slugs for cross-referencing.
 
+## Hooks
+
+| Hook | Event | Purpose |
+|------|-------|---------|
+| **plan-refinement-gate** | PostToolUse (Write) | Detects raw plan files written to `docs/plans/` and blocks execution until `writing-implementation-plans` refines them into phases. |
+
+This hook works with the `superpowers` plugin — when `superpowers:writing-plans` saves a plan file, the hook fires and forces plan refinement before any execution can begin.
+
 ## Origins
 
 Skills sourced from:

@@ -89,7 +89,7 @@ Implementing the backend DELETE endpoint and database soft-delete logic.
 ## Phase 0: Setup
 
 1. **Parse the feature description** — if it's a file path, read the ticket. If it's a sentence, use it directly.
-2. **Create a worktree** — use git worktrees to isolate work on a feature branch.
+2. **Create a worktree** — invoke `superpowers:using-git-worktrees` to isolate work.
 3. **Create TodoWrite tracker** with all phases:
    - Phase 1: Brainstorm
    - Phase 2: Plan
@@ -142,7 +142,7 @@ Spec: <paste spec content or path>
 
 Instructions:
 1. Read the spec document
-2. Use the writing-plans skill to create the implementation plan
+2. Use the superpowers:writing-plans skill to create the implementation plan
 3. When the planning process would normally ask the user a question:
    - Choose the recommended/simplest approach
    - Document your decision
@@ -161,7 +161,7 @@ Return: path to plan file + number of tasks + brief task list.
 
 ## Phase 3: Execute (Sonnet sub-agents per task)
 
-Execute the plan using sub-agent-driven development — dispatch one sub-agent per task.
+Use the `superpowers:subagent-driven-development` skill to execute the plan.
 
 Key overrides for YOLO mode:
 - **Implementation sub-agents use Sonnet** (not the default model)
@@ -228,6 +228,20 @@ When you encounter a decision point that would normally require user input:
 | Brainstorming scope too large | Decompose into sub-projects, implement the first one only. |
 | Plan has >15 tasks | Consider if scope is too large. Implement core tasks, defer stretch goals. |
 | Worktree creation fails | Branch may already exist. Try a different name or clean up stale worktrees. |
+
+## Integration with Existing Skills
+
+This skill orchestrates these existing skills — do NOT reimplement their logic:
+
+| Skill | Used in Phase |
+|-------|--------------|
+| `superpowers:using-git-worktrees` | Phase 0 |
+| `superpowers:brainstorming` | Phase 1 (sub-agent uses brainstorming principles, not the skill directly) |
+| `superpowers:writing-plans` | Phase 2 (via sub-agent) |
+| `superpowers:subagent-driven-development` | Phase 3 |
+| `superpowers:test-driven-development` | Phase 3 (within implementation sub-agents) |
+| `superpowers:verification-before-completion` | Phase 4 gates |
+| `yolo-summary` | Phase 5 |
 
 ## What NOT To Do
 

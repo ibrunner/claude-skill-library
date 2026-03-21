@@ -3,5 +3,18 @@
   "version": "1.0.0",
   "description": "Shared Claude Code skills for autonomous development, session management, task tracking, and branch workflows.",
   "skills_dir": "skills",
-  "commands_dir": "commands"
+  "commands_dir": "commands",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/plan-refinement-gate.sh"
+          }
+        ]
+      }
+    ]
+  }
 }
