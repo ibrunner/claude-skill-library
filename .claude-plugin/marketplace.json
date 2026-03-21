@@ -1,0 +1,16 @@
+{
+  "name": "claude-skill-library",
+  "owner": {
+    "name": "Ian Brunner"
+  },
+  "plugins": [
+    {
+      "name": "claude-skill-library",
+      "source": {
+        "source": "github",
+        "repo": "ibrunner/claude-skill-library"
+      },
+      "description": "Shared skills for autonomous development, session management, task tracking, and branch workflows."
+    }
+  ]
+}
