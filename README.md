@@ -60,13 +60,9 @@ All task documents use YAML frontmatter with `type`, `status`, `priority`, and o
 
 ## Installation
 
-Install one or both plugins in Claude Code:
+Install one or both plugins from the Claude Code marketplace. In Claude Code, run:
 
-```bash
-# Both plugins
-claude plugins add ibrunner/claude-skill-library --directory ians-common-skills
-claude plugins add ibrunner/claude-skill-library --directory ians-task-tracker
-
-# Or just one
-claude plugins add ibrunner/claude-skill-library --directory ians-common-skills
+```
+/plugin install ians-common-skills
+/plugin install ians-task-tracker
 ```
