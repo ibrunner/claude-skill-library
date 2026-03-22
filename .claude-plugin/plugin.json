@@ -1,0 +1,5 @@
+{
+  "name": "claude-skill-library",
+  "description": "Plugin distribution for ians-common-skills and ians-task-tracker",
+  "version": "1.0.0"
+}
