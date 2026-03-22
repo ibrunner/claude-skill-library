@@ -5,12 +5,22 @@
   },
   "plugins": [
     {
-      "name": "claude-skill-library",
+      "name": "ians-common-skills",
       "source": {
         "source": "github",
-        "repo": "ibrunner/claude-skill-library"
+        "repo": "ibrunner/claude-skill-library",
+        "directory": "ians-common-skills"
       },
-      "description": "Shared skills for autonomous development, session management, task tracking, and branch workflows."
+      "description": "Common skills for autonomous development, session management, plan refinement, and branch workflows."
+    },
+    {
+      "name": "ians-task-tracker",
+      "source": {
+        "source": "github",
+        "repo": "ibrunner/claude-skill-library",
+        "directory": "ians-task-tracker"
+      },
+      "description": "In-repo task management as an alternative to GitHub Issues or Linear."
     }
   ]
 }

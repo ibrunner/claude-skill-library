@@ -1,66 +1,26 @@
 # Claude Skill Library
 
-A shared collection of Claude Code skills and commands for autonomous development, session management, task tracking, and branch workflows.
+A monorepo containing two independently installable Claude Code plugins for autonomous development workflows and in-repo task management.
 
-## Installation
+## Plugins
 
-Add this plugin to your Claude Code settings:
+### ians-common-skills
 
-```json
-{
-  "plugins": [
-    "/path/to/claude-skill-library"
-  ]
-}
-```
+General-purpose skills for autonomous development, session management, plan refinement, and branch workflows.
 
-## Skills (14)
-
-### Autonomous Development
+#### Skills
 
 | Skill | Description |
 |-------|-------------|
-| **yolo** | Full autonomous feature lifecycle: brainstorm, plan, implement, test, summarize. User walks away, comes back to a structured summary. |
-| **yolo-summary** | Internal skill invoked by yolo. Generates the completion report with acceptance criteria, test coverage, and QA walkthrough. |
-
-### Planning & Documentation
-
-| Skill | Description |
-|-------|-------------|
-| **plan-feature** | Quick task ticket creator. Takes a 1-sentence description, infers frontmatter, writes a ticket to `docs/tasks/`. |
-| **writing-implementation-plans** | Refines micro-task plans into phased, multi-session implementation plans with exit criteria and checkpoints. |
-
-### Task Management
-
-| Skill | Description |
-|-------|-------------|
-| **task-initiative** | Creates initiative documents (highest-level grouping spanning multiple projects). |
-| **task-project** | Creates project documents (groups related issues with phases). |
-| **task-issue** | Creates issue documents (feature, fix, or chore work items). |
-| **bug-report** | Investigates bugs and writes structured bug tickets with root cause analysis. |
-
-### Session Management
-
-| Skill | Description |
-|-------|-------------|
+| **yolo** | Full autonomous feature lifecycle: brainstorm, plan, implement, test, summarize. |
+| **yolo-summary** | Internal skill invoked by yolo. Generates the completion report with acceptance criteria and test coverage. |
+| **plan-refinement** | Adds phase structure, exit criteria, and checkboxes to existing plans. Complements `superpowers:writing-plans`. |
 | **session-bounce** | End-of-session handoff: documents state, kills processes, rebases, renames branch, pushes. |
 | **session-pickup** | Resumes a bounced session: finds the branch, reads handoff doc, presents context briefing. |
-
-### Branch Workflows
-
-| Skill | Description |
-|-------|-------------|
 | **merge-to-main** | Merges feature branch to main: tests, merge, push, branch cleanup, plan archival. No PRs. |
 | **branch-housekeeping** | End-of-branch cleanup: audit plan, capture unfinished work as tickets, archive docs, commit. |
 
-### Testing & Tools
-
-| Skill | Description |
-|-------|-------------|
-| **sandbox-testing** | Ephemeral Docker Compose environments for branch testing with Playwright. |
-| **read-png-metadata** | Reads PNG tEXt chunks (A1111 parameters, ComfyUI JSON, etc.) using Node.js one-liners. |
-
-## Commands (8)
+#### Commands
 
 | Command | Description |
 |---------|-------------|
@@ -70,12 +30,25 @@ Add this plugin to your Claude Code settings:
 | `/merge` | Merge branch to main |
 | `/session-bounce` | End session with handoff document |
 | `/session-pickup` | Resume a bounced session |
-| `/sandbox-nuke` | Stop all sandboxes and clean up |
 | `/joke` | Tell a programming joke |
 
-## Task Taxonomy
+---
 
-The task management skills follow a three-level hierarchy:
+### ians-task-tracker
+
+Self-contained in-repo task management as an alternative to GitHub Issues or Linear.
+
+#### Skills
+
+| Skill | Description |
+|-------|-------------|
+| **plan-feature** | Quick task ticket creator. Takes a 1-sentence description, infers frontmatter, writes a ticket to `docs/tasks/`. |
+| **task-initiative** | Creates initiative documents (highest-level grouping spanning multiple projects). |
+| **task-project** | Creates project documents (groups related issues with phases). |
+| **task-issue** | Creates issue documents (feature, fix, or chore work items). |
+| **bug-report** | Investigates bugs and writes structured bug tickets with root cause analysis. |
+
+#### Task Taxonomy
 
 ```
 Initiative (strategic direction, spans multiple projects)
@@ -85,16 +58,15 @@ Initiative (strategic direction, spans multiple projects)
 
 All task documents use YAML frontmatter with `type`, `status`, `priority`, and optional `project`/`initiative` slugs for cross-referencing.
 
-## Hooks
+## Installation
 
-| Hook | Event | Purpose |
-|------|-------|---------|
-| **plan-refinement-gate** | PostToolUse (Write) | Detects raw plan files written to `docs/plans/` and blocks execution until `writing-implementation-plans` refines them into phases. |
+Install one or both plugins in Claude Code:
 
-This hook works with the `superpowers` plugin — when `superpowers:writing-plans` saves a plan file, the hook fires and forces plan refinement before any execution can begin.
+```bash
+# Both plugins
+claude plugins add ibrunner/claude-skill-library --directory ians-common-skills
+claude plugins add ibrunner/claude-skill-library --directory ians-task-tracker
 
-## Origins
-
-Skills sourced from:
-- **User-level Claude skills** (`~/.claude/skills/`) — ported directly
-- **SD-flow project skills** — generalized to remove project-specific references (package managers, sandbox scripts, project paths)
+# Or just one
+claude plugins add ibrunner/claude-skill-library --directory ians-common-skills
+```

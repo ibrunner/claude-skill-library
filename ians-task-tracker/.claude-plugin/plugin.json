@@ -1,0 +1,5 @@
+{
+  "name": "ians-task-tracker",
+  "version": "1.0.0",
+  "description": "In-repo task management as an alternative to GitHub Issues or Linear. Three-level hierarchy: Initiative, Project, Issue."
+}
