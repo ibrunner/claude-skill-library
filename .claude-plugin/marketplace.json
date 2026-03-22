@@ -1,26 +1,21 @@
 {
   "name": "claude-skill-library",
+  "description": "Shared Claude Code skills for autonomous development and task management",
   "owner": {
     "name": "Ian Brunner"
   },
   "plugins": [
     {
       "name": "ians-common-skills",
-      "source": {
-        "source": "github",
-        "repo": "ibrunner/claude-skill-library",
-        "directory": "ians-common-skills"
-      },
-      "description": "Common skills for autonomous development, session management, plan refinement, and branch workflows."
+      "description": "Common skills for autonomous development, session management, plan refinement, and branch workflows.",
+      "version": "1.0.0",
+      "source": "./ians-common-skills"
     },
     {
       "name": "ians-task-tracker",
-      "source": {
-        "source": "github",
-        "repo": "ibrunner/claude-skill-library",
-        "directory": "ians-task-tracker"
-      },
-      "description": "In-repo task management as an alternative to GitHub Issues or Linear."
+      "description": "In-repo task management as an alternative to GitHub Issues or Linear.",
+      "version": "1.0.0",
+      "source": "./ians-task-tracker"
     }
   ]
 }
