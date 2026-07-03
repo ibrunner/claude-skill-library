@@ -1,0 +1,17 @@
+{
+  "description": "vision-verify enforcement: redirects Reads of UI screenshots to the local vision model (inert unless VISION_API_URL is set)",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/deny-screenshot-read.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

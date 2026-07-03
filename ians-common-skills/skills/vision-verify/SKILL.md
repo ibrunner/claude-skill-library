@@ -61,6 +61,20 @@ If the model's answer is ambiguous, contradicts itself, or a FAIL is surprising:
 
 A surprising FAIL is often correct: verify against ground truth before assuming the local model erred.
 
+## Enforcement hook (makes this the default)
+
+This plugin ships a `PreToolUse` hook (`hooks/deny-screenshot-read.sh`) that denies `Read` calls on screenshot-like image files (paths under `.playwright-mcp/`, `screenshots/`, `test-results/`, or basenames matching `*screenshot*`, `page-*`, `snapshot*`, `viewport*`) and redirects to this skill. Other images (generated art, design assets) remain readable.
+
+It is inert unless `VISION_API_URL` is set. Toggles:
+
+| Action | How |
+|---|---|
+| Off for a session | `VISION_VERIFY_ENFORCE=0` before launching |
+| Off mid-session | `touch ~/.claude/vision-verify.disabled` |
+| Back on | `rm ~/.claude/vision-verify.disabled` |
+
+Hook config changes load at session start — restart Claude Code after installing/updating the plugin.
+
 ## Quick reference
 
 | Task | Command |
